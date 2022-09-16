@@ -7,6 +7,7 @@ I am pleased to bring you the final version of my workday task schedule applicat
 ## Deployment
 
 Project Repository URL: https://github.com/gregorywyrick/workday-scheduler
+
 Live Website URL: https://gregorywyrick.github.io/workday-scheduler/
 
 ## Installation
