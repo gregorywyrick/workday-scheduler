@@ -1,7 +1,7 @@
 var currentHr = parseInt(moment().format('H'));
 var classes = [".8AM", ".9AM", ".10AM", ".11AM", ".12PM", ".1PM", ".2PM", ".3PM", ".4PM", ".5PM", ".6PM"]
 var hour = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
-var allNotes = ["", "", "", "", "", "", "", "", "", "", ""]
+var tasks = ["", "", "", "", "", "", "", "", "", "", ""]
 var classIndex = hour.indexOf(currentHr);
 $("#currentDay").text(moment().format('dddd, MMMM D, YYYY'));
 var currentDayCheck = moment().format('dddd, MMMM D, YYYY')
@@ -44,32 +44,29 @@ function formatTimes() {
 
 $(".saveBtn").on("click", function () {
     var di = $(this).data('index');
-    allNotes[di] = $(classes[di]).val();
-    localStorage.setItem('allNotes', JSON.stringify(allNotes))
+    tasks[di] = $(classes[di]).val();
+    localStorage.setItem('tasks', JSON.stringify(allNotes))
     alert("Saved")
 
 })
 
 function grabData() {
-    allNotes = JSON.parse(localStorage.getItem("allNotes"));
-    if (allNotes == null) {
-        allNotes = ["", "", "", "", "", "", "", "", "", "", ""];
+    allNotes = JSON.parse(localStorage.getItem("tasks"));
+    if (tasks == null) {
+        tasks = ["", "", "", "", "", "", "", "", "", "", ""];
         return;
     }
     for (i = 0; i < classes.length; i++) {
-        ($(classes[i])).val(allNotes[i]);
+        ($(classes[i])).val(tasks[i]);
     }
 }
 
-$(".cleary").on("click", function () {
-    cleardata()
-})
 
 function cleardata() {
     var confirmDelete = confirm("You are about to clear all previous data, are you sure?");
     if (confirmDelete == true) {
-        allNotes = ["", "", "", "", "", "", "", "", "", "", ""];
-        localStorage.setItem('allNotes', JSON.stringify(allNotes));
+        tasks = ["", "", "", "", "", "", "", "", "", "", ""];
+        localStorage.setItem('tasks', JSON.stringify(tasks));
         grabData();
     }
 }
@@ -91,8 +88,8 @@ function checkDay() {
 
 $(".savey").on("click", function () {
     for (i = 0; i < classes.length; i++) {
-        allNotes[i] = $(classes[i]).val();
+        tasks[i] = $(classes[i]).val();
     }
-    localStorage.setItem('allNotes', JSON.stringify(allNotes))
+    localStorage.setItem('tasks', JSON.stringify(tasks))
     alert("Data has been saved")
 })
